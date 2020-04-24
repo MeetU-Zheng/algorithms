@@ -1,4 +1,4 @@
-package java.array;
+package array;
 
 /*** use array implement LRU algorithm ***/
 
