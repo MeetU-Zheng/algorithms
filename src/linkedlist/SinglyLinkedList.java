@@ -1,8 +1,11 @@
 package linkedlist;
 
+import java.util.LinkedList;
+
 public class SinglyLinkedList {
 
 	private Node head;
+//	private int size;
 
 	public SinglyLinkedList() {
 		head = new Node(0, null);
@@ -17,24 +20,55 @@ public class SinglyLinkedList {
 		p.next = newNode;
 	}
 
-	public void insertHead(Node newNode) {
-		newNode.next = head.next;
-		head.next = newNode;
+	private void insertAfter(Node p, Node newNode) {
+		if(p == null)
+			return;
+		newNode.next = p.next;
+		p.next = newNode;
 	}
 
 	public void insertHead(int data) {
 		Node newNode = new Node(data, null);
-		insertHead(newNode);
+		insertAfter(head, newNode);
+	}
+	
+	public void inverseLinkedList() {
+		inverseLinkedList(head);
 	}
 
-	public void inverseLinkedList(Node endNode) {
-		Node p = head.next, cur;
-		head.next =null;
-		while (p != null && p != endNode) {
+	private void inverseLinkedList(Node beginNode) {
+		Node p = beginNode.next, cur;
+		beginNode.next =null;
+		while (p != null) {
 			cur = p.next;
-			insertHead(p);
+			insertAfter(beginNode, p);
 			p = cur;
 		}
+	}
+	
+	/**Determine is it palindrome */
+	public boolean isPalindrome() {
+		Node p,q;
+		boolean flag = true;
+		if(head.next == null)
+			return false;
+		p = q = head.next;
+		while(q.next!=null && q.next.next!=null) {
+			p = p.next;
+			q = q.next.next;
+		}
+		inverseLinkedList(p);
+		Node left=head.next,right=p.next;
+		while(right!=null) {
+			if(right.data != left.data) {
+				flag = false;
+				break;
+			}
+			left=left.next;
+			right=right.next;
+		}
+		inverseLinkedList(p);
+		return flag;
 	}
 
 	public void printAll() {
@@ -54,7 +88,7 @@ public class SinglyLinkedList {
 			this.data = data;
 			this.next = next;
 		}
-
+		
 		@Override
 		public String toString() {
 			return data + "";
@@ -64,13 +98,14 @@ public class SinglyLinkedList {
 
 	public static void main(String[] args) {
 		SinglyLinkedList list = new SinglyLinkedList();
-		int[] data= {1,2,3,4,5};
+		int[] data= {1,2};
 		for(int i=0;i<data.length;i++) {
 			list.insertTail(data[i]);
 		}
+		System.out.println(list.isPalindrome());
 		list.printAll();
-		list.inverseLinkedList(null);
-		list.printAll();
+//		list.inverseLinkedList();
+//		list.printAll();
 	}
 
 }
