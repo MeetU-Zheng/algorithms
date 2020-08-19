@@ -4,7 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 
-//循环解后序和中序遍历为什么会比前序更困难？因为根在中间和后面，不能先解决掉？
+//循环解后序为什么会比前序和中序遍历更困难？
+//看是否有将根节点出栈又入栈的需要，导致多余判断
+//前序遍历可以先将根处理掉，中序遍历可以用指针指向右子树，所以也可以处理根，
+//而不用重复将根入栈，重复判断是否为第一次入栈
+
+//如果统一进行标记，是否就能像写递归一样，只改变入栈和输出的顺序就可以了？
 public class BinaryTreePostorderTraversal {
 	
 	private ArrayList<Integer> list = new ArrayList<Integer>();
@@ -20,7 +25,7 @@ public class BinaryTreePostorderTraversal {
 		return list;
 	}
 	
-	
+	//因为根节点每次都得放回栈中，所以有重复使用的可能，需要解决
 	public ArrayList<Integer> solution2(TreeNode root){
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
@@ -103,20 +108,7 @@ public class BinaryTreePostorderTraversal {
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
 		TreeNode node = root;
-		if(root != null)
-			stack.push(root);
-		while(!stack.isEmpty()) {
-			node = stack.pop();
-			while(node != null) {
-				stack.push(node);
-				node = node.left;
-			}
-			node = stack.pop();
-			if(node.right != null)
-				stack.push(node);
-			else 
-				list.add(node.val);
-		}
+		
 		return list;
 	}
 	

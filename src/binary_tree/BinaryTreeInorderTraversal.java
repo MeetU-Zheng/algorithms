@@ -20,7 +20,7 @@ public class BinaryTreeInorderTraversal {
 	}
 	
 
-	
+	//没有将根节点出栈又入栈的需要，所以不需要多余判断
 	public ArrayList<Integer> solution2(TreeNode root){
 		ArrayList<Integer> list = new ArrayList<>();
 		LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
@@ -28,7 +28,6 @@ public class BinaryTreeInorderTraversal {
 		while(node != null || !stack.isEmpty()) {
 			while(node != null) {
 				stack.push(node);
-				
 				node = node.left;
 			}
 			node = stack.pop();
