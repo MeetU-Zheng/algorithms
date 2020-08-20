@@ -99,6 +99,7 @@ public class BinaryTreePostorderTraversal {
 				stack.push(node.right);
 			}
 		}
+		//如果一开始添加就使用头插法，就不需要最后的倒序
 		Collections.reverse(list);
 		return list;
 	}

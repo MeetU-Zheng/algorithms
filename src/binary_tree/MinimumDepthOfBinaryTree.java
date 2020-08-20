@@ -119,6 +119,9 @@ public class MinimumDepthOfBinaryTree {
 		return minDepth;
 	}
 	
+	//TODO:改进方法5，在进入每一层时入栈层数作为标记。（统一遍历方法）
+	//或者像层序遍历中，先确定每一层的数量，进而确定循环次数。
+	
 	//dfs, 迭代, 用栈模拟递归
 	public int solution6(TreeNode root) {
 		int minDepth = 0;

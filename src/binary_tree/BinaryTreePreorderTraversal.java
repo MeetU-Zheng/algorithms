@@ -57,6 +57,7 @@ public class BinaryTreePreorderTraversal {
 	}
 	
 	//简化方法3, 好像没简化成，越写越复杂，就少了点入栈和出栈操作
+	//栈中只需要存右子树的根节点
 	public ArrayList<Integer> solution4(TreeNode root){
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		LinkedList<TreeNode> stack = new LinkedList<TreeNode>();
