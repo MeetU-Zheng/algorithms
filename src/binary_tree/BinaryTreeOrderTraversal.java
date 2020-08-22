@@ -31,5 +31,32 @@ public class BinaryTreeOrderTraversal {
 		return list;
 	}
 	
+	//如果类型不够明确，可以加一个标识，或者用null标记
+	class Flag{}
+	public List<Integer> solution2(TreeNode root) {
+		ArrayList<Integer> list = new ArrayList<>();
+		LinkedList<Object> stack = new LinkedList<>();
+		Object e;
+		TreeNode node;
+		Flag flag = new Flag();
+		stack.add(root);
+		while(!stack.isEmpty()) {
+			e = stack.pop();
+			if(e == null) continue;
+			if(e instanceof TreeNode) {
+				node = (TreeNode)e;
+				//后序遍历
+				stack.push(node);
+				stack.push(flag);
+				stack.push(node.right);
+				stack.push(node.left);
+			}else if (e instanceof Flag) {
+				node = (TreeNode)stack.pop();
+				list.add(node.val);
+			}
+		}
+		return list;
+	}
+	
 	
 }
