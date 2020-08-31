@@ -71,23 +71,28 @@ public class Sorts {
 		}
 	}
 	
-	//希尔排序
+	//TODO:希尔排序
 	public static void shellSort(int[] nums) {
 		
 	}
 	
-	//归并排序
+	//TODO:归并排序
 	public static void mergeSort(int[] nums) {
 		
 	}
 	
-	//快速排序
+	//TODO:快速排序
 	public static void quickSort(int[] nums) {
 		
 	}
 	
-	//桶排序
+	//TODO:桶排序
 	public static void bucketSort(int[] nums) {
+		
+	}
+	
+	//TODO:堆排序
+	public static void heapSort(int[] nums) {
 		
 	}
 	
