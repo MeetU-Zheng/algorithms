@@ -20,6 +20,7 @@ public class binarySearch {
 			return dp(nums, mid+1, end, target);
 	}
 	
+	//迭代
 	public int solution2(int[] nums, int target) {
 		int right = nums.length-1;
 		int left = 0;
