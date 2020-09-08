@@ -35,7 +35,8 @@ public class Sorts {
 					flag = true;
 				}
 			}
-			if (!flag) break;
+			if (!flag)
+				break;
 		}
 	}
 
@@ -58,47 +59,82 @@ public class Sorts {
 		for (int i = 1; i < n; i++) {
 			int j = i;
 			int cur = nums[i];
-			while(j-- > 0) {
-				if(nums[j] > cur)
-					nums[j+1] = nums[j];
+			while (j-- > 0) {
+				if (nums[j] > cur)
+					nums[j + 1] = nums[j];
 				else {
-					nums[j+1]=cur;
+					nums[j + 1] = cur;
 					break;
 				}
 			}
-			if(j == -1)
+			if (j == -1)
 				nums[0] = cur;
 		}
 	}
-	
-	//TODO:希尔排序
+
+	// TODO:希尔排序
 	public static void shellSort(int[] nums) {
-		
+
 	}
-	
-	//TODO:归并排序
-	public static void mergeSort(int[] nums) {
-		
+
+	// TODO:归并排序
+	// 递归
+	// TODO:如果原本的数组已排好序，该怎么判断
+	public static void mergeSort1(int[] nums) {
+		mergeSortRecur(nums, 0, nums.length - 1);
 	}
-	
-	//TODO:快速排序
+
+	private static void mergeSortRecur(int[] nums, int left, int right) {
+		if (left >= right)
+			return;
+		int mid = left + (right - left) / 2;
+		mergeSortRecur(nums, left, mid);
+		mergeSortRecur(nums, mid + 1, right);
+		merge(nums, left, mid + 1, right);
+	}
+
+	// 能否化简
+	private static void merge(int[] nums, int left, int p, int right) {
+		//判断是否已排好序
+		if (nums[p - 1] <= nums[p])
+			return;
+		int temp[] = new int[right - left + 1];
+		int i = 0, j = left, k = p;
+		while (i < temp.length) {
+			if (j < p && k <= right)
+				temp[i++] = nums[j] > nums[k] ? nums[k++] : nums[j++];
+			else
+				break;
+		}
+		while (j < p) {
+			temp[i++] = nums[j++];
+		}
+		while (k <= right) {
+			temp[i++] = nums[k++];
+		}
+		for (i = 0; i <= right - left; j++, i++) {
+			nums[i + left] = temp[i];
+		}
+	}
+
+	// TODO:快速排序
 	public static void quickSort(int[] nums) {
-		
+
 	}
-	
-	//TODO:桶排序
+
+	// TODO:桶排序
 	public static void bucketSort(int[] nums) {
-		
+
 	}
-	
-	//TODO:堆排序
+
+	// TODO:堆排序
 	public static void heapSort(int[] nums) {
-		
+
 	}
-	
+
 	public static void main(String[] args) {
 		int[] array = new int[] { 3, 4, 2, 1, 5, 6, 7, 8 };
-		insertionSort(array);
+		mergeSort1(array);
 		System.out.println(Arrays.toString(array));
 	}
 
