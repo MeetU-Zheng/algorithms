@@ -7,8 +7,8 @@ public class Sorts {
 	// 交换两个数
 	private static void swap(int[] nums, int i, int j) {
 		int temp = nums[i];
-		nums[i]=nums[j];
-		nums[j]=temp;
+		nums[i] = nums[j];
+		nums[j] = temp;
 	}
 
 	// 冒泡排序
@@ -69,35 +69,35 @@ public class Sorts {
 				nums[0] = cur;
 		}
 	}
-	
-	//插入减少一个判断
-	public static void insertionSort2(int [] nums) {
-		for(int i=1;i<nums.length;i++) {
-			int n=i;
+
+	// 插入减少一个判断
+	public static void insertionSort2(int[] nums) {
+		for (int i = 1; i < nums.length; i++) {
+			int n = i;
 			int tmp = nums[i];
-			while(--n >= 0) {
-				if(nums[n]>tmp)
-					nums[n+1] = nums[n];
+			while (--n >= 0) {
+				if (nums[n] > tmp)
+					nums[n + 1] = nums[n];
 				else
 					break;
 			}
-			nums[n+1]=tmp;
+			nums[n + 1] = tmp;
 		}
 	}
-	
-	//给插入排序多加一个希尔排序的增量
+
+	// 给插入排序多加一个希尔排序的增量
 	public static void insertionSort3(int[] nums, int gap) {
-		for(int i=0;i<gap;i++) {
-			for(int j=i+gap;j< nums.length;j++) {
-				int n=j;
+		for (int i = 0; i < gap; i++) {
+			for (int j = i + gap; j < nums.length; j++) {
+				int n = j;
 				int tmp = nums[n];
-				while((n-=gap)>=0) {
-					if(nums[n]> tmp)
-						nums[n+gap]=nums[n];
+				while ((n -= gap) >= 0) {
+					if (nums[n] > tmp)
+						nums[n + gap] = nums[n];
 					else
 						break;
 				}
-				nums[n+gap]=tmp;
+				nums[n + gap] = tmp;
 			}
 		}
 	}
@@ -106,13 +106,12 @@ public class Sorts {
 	// TODO:希尔排序仍然有多余的交换和移动，怎么解决
 	public static void shellSort(int[] nums) {
 		int gap = nums.length;
-		while(gap>0) {
-			gap/=2;
-			//插入排序
+		while (gap > 0) {
+			gap /= 2;
+			// 插入排序
 			insertionSort3(nums, gap);
 		}
 	}
-	
 
 	// TODO:归并排序
 	// 递归
@@ -132,7 +131,7 @@ public class Sorts {
 
 	// 能否化简
 	private static void merge(int[] nums, int left, int p, int right) {
-		//判断是否已排好序
+		// 判断是否已排好序
 		if (nums[p - 1] <= nums[p])
 			return;
 		int temp[] = new int[right - left + 1];
@@ -156,36 +155,36 @@ public class Sorts {
 
 	// TODO:快速排序
 	public static void quickSort(int[] nums) {
-		quickSortRecur(nums, 0, nums.length-1);
+		quickSortRecur(nums, 0, nums.length - 1);
 	}
-	
+
 	private static void quickSortRecur(int[] nums, int left, int right) {
-		if(left>=right) return;
+		if (left >= right)
+			return;
 		int p = partition(nums, left, right);
-		quickSortRecur(nums, left, p-1);
-		quickSortRecur(nums, p+1, right);
+		quickSortRecur(nums, left, p - 1);
+		quickSortRecur(nums, p + 1, right);
 	}
-	//返回中间值下标，下标小于该返回值则对应数组元素小于中间值，下标大于……
+
+	// 返回中间值下标，下标小于该返回值则对应数组元素小于中间值，下标大于……
 	private static int partition(int[] nums, int left, int right) {
-		int index=getPivotIndex(nums, left, right);
+		int index = getPivotIndex(nums, left, right);
 		swap(nums, index, right);
-		
-		int i,j;
-		for(i=0,j=0;j<right;j++) {
-			if(nums[j] < nums[right]) 
+
+		int i, j;
+		for (i = j = left; j < right; j++) {
+			if (nums[j] < nums[right])
 				swap(nums, i++, j);
 		}
 		swap(nums, i, right);
 		return i;
 	}
-	
-	//优化基准值的选取，防止快排性能退化
-	//默认返回最右下标
+
+	// 优化基准值的选取，防止快排性能退化
+	// 默认返回最右下标
 	private static int getPivotIndex(int[] nums, int left, int right) {
 		return right;
 	}
-	
-	
 
 	// TODO:桶排序
 	public static void bucketSort(int[] nums) {
@@ -196,10 +195,10 @@ public class Sorts {
 	public static void heapSort(int[] nums) {
 
 	}
-	
+
 	// TODO:TimSort
 	public static void timSort(int[] nums) {
-		
+
 	}
 
 	public static void main(String[] args) {
