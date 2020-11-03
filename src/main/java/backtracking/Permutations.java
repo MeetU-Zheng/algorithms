@@ -35,18 +35,20 @@ public class Permutations {
 		List<List<Integer>> lists = new ArrayList<>();
 		List<Integer> output = new ArrayList<>();
 		
-		//第i个空格
-		for(int i = 0;i<nums.length;i++) {
-			//new ans;
-			for(list:lists) {
-				//第j个数
-				for(int j = 0; j< nums.length;j++) {
-					//判断list是否已有
-					//把nums[j]加入list
-					//拷贝list，等待尝试添加下一个空格
-				}
-			}
-		}
+//		//第i个空格
+//		for(int i = 0;i<nums.length;i++) {
+//			//new ans;
+//			for(list:lists) {
+//				//第j个数
+//				for(int j = 0; j< nums.length;j++) {
+//					//判断list是否已有
+//					//把nums[j]加入list
+//					//拷贝list，等待尝试添加下一个空格
+//				}
+//			}
+//		}
+		
+		return lists;
 		
 	}
 

@@ -121,9 +121,29 @@ public class MinimumDepthOfBinaryTree {
 	
 	//TODO:改进方法5，在进入每一层时入栈层数作为标记。（统一遍历方法）
 	//或者像层序遍历中，先确定每一层的数量，进而确定循环次数。
+	public int solution6(TreeNode root) {
+		int minDepth = 0;
+		LinkedList<TreeNode> queue = new LinkedList<>();
+		TreeNode currNode = root;
+		if(root != null)
+			queue.add(root);
+		END:
+		while(!queue.isEmpty()) {
+			minDepth++;
+			int n = queue.size();
+			for(int i = 0; i< n;i++) {
+				currNode = queue.remove();
+				if(currNode.left == null && currNode.right == null)
+					break END;
+				if(currNode.left != null) queue.add(currNode.left);
+				if(currNode.right != null) queue.add(currNode.right);
+			}
+		}
+		return minDepth;
+	}
 	
 	//dfs, 迭代, 用栈模拟递归
-	public int solution6(TreeNode root) {
+	public int solution7(TreeNode root) {
 		int minDepth = 0;
 		LinkedList<AbstractMap.SimpleEntry<TreeNode, Integer>> stack = 
 				new LinkedList<>();
@@ -149,6 +169,8 @@ public class MinimumDepthOfBinaryTree {
 		}
 		return minDepth;
 	}
+	
+	
 	
 	public static void main(String[] args) {	
 		TreeNode node0 = new TreeNode();
